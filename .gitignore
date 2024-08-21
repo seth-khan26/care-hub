@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.tsbuildinfo
+.claude/
+CLAUDE.md
+AGENTS.md
+skills-lock.json
+*.pdf
+dist/
+out/
+coverage/
+.turbo/
+*.log

@@ -1,0 +1,406 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  PROVIDER
+  STAFF
+  PATIENT
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  CHECKED_IN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum ClinicalNoteStatus {
+  DRAFT
+  FINALIZED
+  AMENDED
+}
+
+enum DocumentCategory {
+  LAB_RESULT
+  IMAGING
+  REFERRAL
+  CONSENT
+  INSURANCE
+  OTHER
+}
+
+// ─── Identity & Tenancy ───────────────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  memberships Membership[]
+  auditLogs   AuditLog[]   @relation("ActorAuditLogs")
+  sessions    Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  ipAddress String?
+  userAgent String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  phone     String?
+  email     String?
+  address   String?
+  city      String?
+  state     String?
+  zip       String?
+  timezone  String   @default("America/New_York")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberships   Membership[]
+  locations     Location[]
+  providers     Provider[]
+  patients      Patient[]
+  appointments  Appointment[]
+  encounters    Encounter[]
+  documents     Document[]
+  auditLogs     AuditLog[]
+  notifications Notification[]
+  invitations   Invitation[]
+}
+
+model Membership {
+  id             String         @id @default(cuid())
+  userId         String
+  organizationId String
+  role           MembershipRole
+  isActive       Boolean        @default(true)
+  joinedAt       DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@index([organizationId])
+  @@index([userId])
+}
+
+model Invitation {
+  id             String         @id @default(cuid())
+  organizationId String
+  email          String
+  role           MembershipRole
+  token          String         @unique @default(cuid())
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  createdAt      DateTime       @default(now())
+  invitedById    String
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([token])
+}
+
+// ─── Locations & Providers ───────────────────────────────────────────────────
+
+model Location {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  address        String
+  city           String
+  state          String
+  zip            String
+  phone          String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  providers    Provider[]
+  appointments Appointment[]
+
+  @@index([organizationId])
+}
+
+model Provider {
+  id             String   @id @default(cuid())
+  organizationId String
+  locationId     String?
+  userId         String?
+  firstName      String
+  lastName       String
+  title          String?
+  specialty      String?
+  licenseNumber  String?
+  npi            String?
+  phone          String?
+  email          String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  location     Location?              @relation(fields: [locationId], references: [id])
+  availability ProviderAvailability[]
+  appointments Appointment[]
+  encounters   Encounter[]
+
+  @@index([organizationId])
+}
+
+model ProviderAvailability {
+  id           String  @id @default(cuid())
+  providerId   String
+  dayOfWeek    Int // 0=Sun, 1=Mon, ..., 6=Sat
+  startTime    String // "09:00"
+  endTime      String // "17:00"
+  slotDuration Int     @default(30) // minutes
+  isActive     Boolean @default(true)
+
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([providerId])
+}
+
+// ─── Patients ─────────────────────────────────────────────────────────────────
+
+model Patient {
+  id             String   @id @default(cuid())
+  organizationId String
+  mrn            String // Medical Record Number
+  firstName      String
+  lastName       String
+  dateOfBirth    DateTime
+  sex            String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  contact      PatientContact?
+  insurance    PatientInsurance?
+  appointments Appointment[]
+  encounters   Encounter[]
+  documents    Document[]
+
+  @@unique([organizationId, mrn])
+  @@index([organizationId])
+  @@index([organizationId, lastName, firstName])
+}
+
+model PatientContact {
+  id             String  @id @default(cuid())
+  patientId      String  @unique
+  phone          String?
+  alternatePhone String?
+  email          String?
+  address        String?
+  city           String?
+  state          String?
+  zip            String?
+  emergencyName  String?
+  emergencyPhone String?
+  emergencyRel   String?
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model PatientInsurance {
+  id             String  @id @default(cuid())
+  patientId      String  @unique
+  insurerName    String?
+  policyNumber   String?
+  groupNumber    String?
+  subscriberName String?
+  relationship   String?
+
+  patient Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+// ─── Appointments ─────────────────────────────────────────────────────────────
+
+model Appointment {
+  id             String            @id @default(cuid())
+  organizationId String
+  patientId      String
+  providerId     String
+  locationId     String?
+  startTime      DateTime
+  endTime        DateTime
+  status         AppointmentStatus @default(SCHEDULED)
+  reason         String?
+  notes          String?
+  checkedInAt    DateTime?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  patient      Patient      @relation(fields: [patientId], references: [id])
+  provider     Provider     @relation(fields: [providerId], references: [id])
+  location     Location?    @relation(fields: [locationId], references: [id])
+  encounter    Encounter?
+
+  @@index([organizationId])
+  @@index([organizationId, providerId, startTime])
+  @@index([organizationId, patientId])
+  @@index([organizationId, startTime])
+}
+
+// ─── Encounters & Clinical Notes ──────────────────────────────────────────────
+
+model Encounter {
+  id             String   @id @default(cuid())
+  organizationId String
+  appointmentId  String?  @unique
+  patientId      String
+  providerId     String
+  encounterDate  DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization  Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  appointment   Appointment?   @relation(fields: [appointmentId], references: [id])
+  patient       Patient        @relation(fields: [patientId], references: [id])
+  provider      Provider       @relation(fields: [providerId], references: [id])
+  clinicalNotes ClinicalNote[]
+
+  @@index([organizationId])
+  @@index([organizationId, patientId])
+}
+
+model ClinicalNote {
+  id             String             @id @default(cuid())
+  organizationId String
+  encounterId    String
+  status         ClinicalNoteStatus @default(DRAFT)
+  chiefComplaint String?
+  observations   String?
+  assessment     String?
+  plan           String?
+  providerNotes  String?
+  finalizedAt    DateTime?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  encounter Encounter             @relation(fields: [encounterId], references: [id], onDelete: Cascade)
+  versions  ClinicalNoteVersion[]
+
+  @@index([organizationId])
+  @@index([encounterId])
+}
+
+model ClinicalNoteVersion {
+  id             String   @id @default(cuid())
+  clinicalNoteId String
+  organizationId String
+  versionNumber  Int
+  chiefComplaint String?
+  observations   String?
+  assessment     String?
+  plan           String?
+  providerNotes  String?
+  amendReason    String?
+  createdAt      DateTime @default(now())
+  createdById    String
+
+  clinicalNote ClinicalNote @relation(fields: [clinicalNoteId], references: [id], onDelete: Cascade)
+
+  @@index([clinicalNoteId])
+  @@index([organizationId])
+}
+
+// ─── Documents ────────────────────────────────────────────────────────────────
+
+model Document {
+  id             String           @id @default(cuid())
+  organizationId String
+  patientId      String?
+  uploadedById   String
+  fileName       String
+  fileSize       Int
+  mimeType       String
+  storageKey     String // Object storage key — never expose directly
+  category       DocumentCategory @default(OTHER)
+  description    String?
+  isDeleted      Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  patient      Patient?     @relation(fields: [patientId], references: [id])
+
+  @@index([organizationId])
+  @@index([organizationId, patientId])
+}
+
+// ─── Audit Log ────────────────────────────────────────────────────────────────
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  actorUserId    String?
+  action         String // e.g. "patient.created", "clinical_note.finalized"
+  resourceType   String
+  resourceId     String
+  requestId      String?
+  ipAddress      String?
+  metadata       Json? // Never put sensitive clinical content here
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  actor        User?        @relation("ActorAuditLogs", fields: [actorUserId], references: [id])
+
+  @@index([organizationId])
+  @@index([organizationId, resourceType, resourceId])
+  @@index([organizationId, createdAt])
+}
+
+// ─── Notifications ────────────────────────────────────────────────────────────
+
+model Notification {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  title          String
+  body           String
+  isRead         Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, userId])
+}

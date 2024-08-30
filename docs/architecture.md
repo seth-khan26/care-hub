@@ -123,3 +123,7 @@ No single mechanism is trusted alone:
 6. **Zod input validation** — rejects malformed input at the boundary before it reaches the database.
 
 Layers 3 and 4 are independent — a bug in one does not compromise the other.
+
+## Data Models
+
+Core models: Organization, User, Patient, Appointment, ClinicalNote.

@@ -144,3 +144,7 @@ export async function requireSession(): Promise<ActiveSession> {
 `redirect()` in Next.js throws a special error that the framework catches and turns into a 307 response. It never returns, so the `return session as ActiveSession` cast is always reached with a valid session — the `as` cast is a TypeScript hint, not a runtime coercion.
 
 This pattern keeps page components clean — they call `requireSession()` and destructure the result without needing null checks.
+
+## Authentication
+
+NextAuth.js credentials provider, bcrypt hashing, JWT sessions.

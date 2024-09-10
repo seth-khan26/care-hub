@@ -139,3 +139,7 @@ Once inside `/org/<slug>`, all operations are scoped to that organization for th
 While the application layer enforces all tenant isolation, the schema is designed to be compatible with PostgreSQL Row Level Security as a second layer of defense. RLS policies would add the `organizationId` check at the database driver level, so a SQL injection or a misconfigured query that bypasses the application layer would still fail.
 
 Enabling RLS is left as a production hardening step — the application works correctly without it, and enabling it requires setting the `organizationId` on the Postgres session for each request, which is straightforward to add with a Prisma middleware or a pool `connect` hook.
+
+## Tenant Isolation
+
+All requests resolve org context via `resolveTenantContext()`.

@@ -127,3 +127,7 @@ Layers 3 and 4 are independent — a bug in one does not compromise the other.
 ## Data Models
 
 Core models: Organization, User, Patient, Appointment, ClinicalNote.
+
+## Data Models
+
+Core models: Organization, User, Patient, Appointment, ClinicalNote.

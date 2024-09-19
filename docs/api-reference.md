@@ -353,3 +353,7 @@ Fetch audit log entries. Requires `audit_logs.read`.
 **Query params:** `?resourceType=`, `?resourceId=`, `?actorUserId=`, `?from=`, `?to=`, `?limit=`, `?offset=`
 
 **Response `200`:** `{ "logs": [...], "total": 42 }`
+
+## Error Handling
+
+All routes return structured `{ code, message }` errors.

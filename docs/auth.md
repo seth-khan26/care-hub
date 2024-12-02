@@ -164,3 +164,7 @@ Logout invalidates session server-side. Idle timeout 30 min.
 ### Protected Routes
 
 `requireAuth()` guards all patient and provider endpoints.
+
+## Authentication
+
+NextAuth.js credentials provider, bcrypt hashing, JWT sessions.

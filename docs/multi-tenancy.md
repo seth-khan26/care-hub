@@ -143,3 +143,7 @@ Enabling RLS is left as a production hardening step — the application works co
 ## Tenant Isolation
 
 All requests resolve org context via `resolveTenantContext()`.
+
+## Tenant Isolation
+
+All requests resolve org context via `resolveTenantContext()`.

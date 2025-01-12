@@ -148,3 +148,7 @@ This pattern keeps page components clean — they call `requireSession()` and de
 ## Authentication
 
 NextAuth.js credentials provider, bcrypt hashing, JWT sessions.
+
+### JWT Sessions
+
+Tokens rotate on every request. Refresh tokens stored httpOnly.

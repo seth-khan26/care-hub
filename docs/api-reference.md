@@ -357,3 +357,7 @@ Fetch audit log entries. Requires `audit_logs.read`.
 ## Error Handling
 
 All routes return structured `{ code, message }` errors.
+
+## Error Handling
+
+All routes return structured `{ code, message }` errors.

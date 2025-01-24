@@ -152,3 +152,7 @@ NextAuth.js credentials provider, bcrypt hashing, JWT sessions.
 ### JWT Sessions
 
 Tokens rotate on every request. Refresh tokens stored httpOnly.
+
+### Password Hashing
+
+bcrypt cost 12. Plaintext passwords never stored.

@@ -168,3 +168,7 @@ Logout invalidates session server-side. Idle timeout 30 min.
 ## Authentication
 
 NextAuth.js credentials provider, bcrypt hashing, JWT sessions.
+
+### JWT Sessions
+
+Tokens rotate on every request. Refresh tokens stored httpOnly.

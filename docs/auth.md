@@ -176,3 +176,7 @@ Tokens rotate on every request. Refresh tokens stored httpOnly.
 ### Password Hashing
 
 bcrypt cost 12. Plaintext passwords never stored.
+
+### Session Management
+
+Logout invalidates session server-side. Idle timeout 30 min.

@@ -147,3 +147,7 @@ STAFF (front-desk) have no clinical note access at all. They can create and mana
 3. Every amendment requires a non-empty `amendReason`
 4. The `finalizedAt` timestamp is set exactly once, at finalization; it is never updated on amendment
 5. `ClinicalNoteVersion` rows are written in the same transaction as the note update — no orphaned snapshots, no missing snapshots
+
+## Note States
+
+DRAFT → IN_REVIEW → SIGNED → AMENDED → LOCKED

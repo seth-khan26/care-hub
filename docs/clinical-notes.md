@@ -151,3 +151,7 @@ STAFF (front-desk) have no clinical note access at all. They can create and mana
 ## Note States
 
 DRAFT → IN_REVIEW → SIGNED → AMENDED → LOCKED
+
+## Drafts
+
+Drafts auto-save every 30 seconds. Resumable from dashboard.

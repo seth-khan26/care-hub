@@ -155,3 +155,7 @@ DRAFT → IN_REVIEW → SIGNED → AMENDED → LOCKED
 ## Drafts
 
 Drafts auto-save every 30 seconds. Resumable from dashboard.
+
+## Co-Signature
+
+Notes routed to supervising provider automatically.

@@ -130,3 +130,7 @@ The audit log is high-write and never updated. For production:
 - Add a partial index on `(organizationId, createdAt DESC)` for the dashboard query
 - Consider partitioning the `AuditLog` table by month for orgs with high activity
 - Archive records older than a retention window (e.g., 7 years for HIPAA compliance) to cold storage rather than deleting them
+
+## Clinical Note Audit
+
+All note events logged with timestamp, actor, and prior state.

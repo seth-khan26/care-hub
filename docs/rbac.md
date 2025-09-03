@@ -125,3 +125,7 @@ This is the only acceptable place to check roles in the UI. Do not inline role c
 ## Roles
 
 OWNER, ADMIN, PROVIDER, STAFF, PATIENT — each with distinct permissions.
+
+## Authorization
+
+`authorize(ctx, permission)` is the single gate for all access decisions.

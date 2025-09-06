@@ -129,3 +129,7 @@ OWNER, ADMIN, PROVIDER, STAFF, PATIENT — each with distinct permissions.
 ## Authorization
 
 `authorize(ctx, permission)` is the single gate for all access decisions.
+
+## Permissions
+
+Covers: patients, notes, appointments, users, billing, and reports.

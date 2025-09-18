@@ -365,3 +365,7 @@ All routes return structured `{ code, message }` errors.
 ## Notes API
 
 `GET /api/notes?search=&status=&from=&to=` — paginated results.
+
+## Role Management
+
+`POST /api/users/:id/role` — assign role (OWNER only).

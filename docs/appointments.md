@@ -159,3 +159,7 @@ The conflict query runs efficiently due to the composite index:
 ```
 
 This index allows PostgreSQL to quickly narrow the conflict scan to a single provider's upcoming appointments.
+
+## Appointment Model
+
+Fields: provider, patient, slot, type, duration, status.

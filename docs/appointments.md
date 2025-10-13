@@ -163,3 +163,7 @@ This index allows PostgreSQL to quickly narrow the conflict scan to a single pro
 ## Appointment Model
 
 Fields: provider, patient, slot, type, duration, status.
+
+## Conflict Prevention
+
+SERIALIZABLE isolation prevents race-condition double-booking.

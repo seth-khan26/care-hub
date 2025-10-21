@@ -167,3 +167,7 @@ Fields: provider, patient, slot, type, duration, status.
 ## Conflict Prevention
 
 SERIALIZABLE isolation prevents race-condition double-booking.
+
+## Availability
+
+Providers configure weekly templates with blocked slots and overrides.

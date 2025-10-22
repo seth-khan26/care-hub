@@ -171,3 +171,7 @@ SERIALIZABLE isolation prevents race-condition double-booking.
 ## Availability
 
 Providers configure weekly templates with blocked slots and overrides.
+
+## Status States
+
+SCHEDULED→CONFIRMED→IN_PROGRESS→COMPLETED | CANCELLED | NO_SHOW

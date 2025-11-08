@@ -206,3 +206,7 @@ The practice is ready to use immediately. The owner is the sole user and can inv
 ## Role Guards
 
 Components use `usePermission()` to conditionally render UI elements.
+
+## Scheduling Dashboard
+
+Calendar shows availability, bookings, and waitlist entries.

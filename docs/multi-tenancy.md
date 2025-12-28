@@ -147,3 +147,7 @@ All requests resolve org context via `resolveTenantContext()`.
 ## Tenant Isolation
 
 All requests resolve org context via `resolveTenantContext()`.
+
+## Security Fix
+
+Patient search was missing `organizationId` filter — cross-org leak.

@@ -151,3 +151,7 @@ All requests resolve org context via `resolveTenantContext()`.
 ## Security Fix
 
 Patient search was missing `organizationId` filter — cross-org leak.
+
+### Fix Applied
+
+All patient service methods now enforce `where: { organizationId }`.

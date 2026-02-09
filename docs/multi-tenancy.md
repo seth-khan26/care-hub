@@ -155,3 +155,7 @@ Patient search was missing `organizationId` filter — cross-org leak.
 ### Fix Applied
 
 All patient service methods now enforce `where: { organizationId }`.
+
+### Tests Added
+
+Integration tests assert cross-org queries return empty results.

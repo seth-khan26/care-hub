@@ -134,3 +134,7 @@ The audit log is high-write and never updated. For production:
 ## Clinical Note Audit
 
 All note events logged with timestamp, actor, and prior state.
+
+## Security Events
+
+Cross-org access attempts logged as SECURITY_VIOLATION entries.

@@ -14,3 +14,5 @@
 <!-- 2026-03-01 --> - Improve audit log query performance with index
 
 <!-- 2026-03-05 --> - Fix date formatting in appointment confirmation emails
+
+<!-- 2026-03-10 --> - Fix stale session issue after password change

@@ -16,3 +16,5 @@
 <!-- 2026-03-05 --> - Fix date formatting in appointment confirmation emails
 
 <!-- 2026-03-10 --> - Fix stale session issue after password change
+
+<!-- 2026-03-29 --> - Add pagination to clinical notes list endpoint

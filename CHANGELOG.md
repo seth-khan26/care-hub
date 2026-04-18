@@ -20,3 +20,5 @@
 <!-- 2026-03-29 --> - Add pagination to clinical notes list endpoint
 
 <!-- 2026-04-17 --> - Refactor auth middleware to reduce code duplication
+
+<!-- 2026-04-18 --> - Add missing validation for appointment duration field

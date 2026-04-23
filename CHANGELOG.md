@@ -22,3 +22,5 @@
 <!-- 2026-04-17 --> - Refactor auth middleware to reduce code duplication
 
 <!-- 2026-04-18 --> - Add missing validation for appointment duration field
+
+<!-- 2026-04-23 --> - Add retry logic to email notification service

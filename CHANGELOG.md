@@ -24,3 +24,5 @@
 <!-- 2026-04-18 --> - Add missing validation for appointment duration field
 
 <!-- 2026-04-23 --> - Add retry logic to email notification service
+
+<!-- 2026-05-04 --> - Add soft delete support for patient records

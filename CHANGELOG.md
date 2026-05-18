@@ -26,3 +26,5 @@
 <!-- 2026-04-23 --> - Add retry logic to email notification service
 
 <!-- 2026-05-04 --> - Add soft delete support for patient records
+
+<!-- 2026-05-18 --> - Fix timezone offset bug in scheduling dashboard

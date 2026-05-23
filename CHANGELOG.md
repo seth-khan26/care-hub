@@ -28,3 +28,5 @@
 <!-- 2026-05-04 --> - Add soft delete support for patient records
 
 <!-- 2026-05-18 --> - Fix timezone offset bug in scheduling dashboard
+
+<!-- 2026-05-23 --> - Improve clinical note search with full-text index

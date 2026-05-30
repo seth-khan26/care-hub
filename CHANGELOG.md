@@ -30,3 +30,5 @@
 <!-- 2026-05-18 --> - Fix timezone offset bug in scheduling dashboard
 
 <!-- 2026-05-23 --> - Improve clinical note search with full-text index
+
+<!-- 2026-05-30 --> - Fix missing error boundary in patient detail page

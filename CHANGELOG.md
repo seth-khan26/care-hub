@@ -32,3 +32,5 @@
 <!-- 2026-05-23 --> - Improve clinical note search with full-text index
 
 <!-- 2026-05-30 --> - Fix missing error boundary in patient detail page
+
+<!-- 2026-05-31 --> - Add CSV export for appointment history report

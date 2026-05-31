@@ -34,3 +34,5 @@
 <!-- 2026-05-30 --> - Fix missing error boundary in patient detail page
 
 <!-- 2026-05-31 --> - Add CSV export for appointment history report
+
+<!-- 2026-05-31 --> - Improve RLS policy coverage for staff role

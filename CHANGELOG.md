@@ -36,3 +36,5 @@
 <!-- 2026-05-31 --> - Add CSV export for appointment history report
 
 <!-- 2026-05-31 --> - Improve RLS policy coverage for staff role
+
+<!-- 2026-06-01 --> - Fix race condition in concurrent session refresh

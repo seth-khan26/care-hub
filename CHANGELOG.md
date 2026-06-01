@@ -40,3 +40,5 @@
 <!-- 2026-06-01 --> - Fix race condition in concurrent session refresh
 
 <!-- 2026-06-01 --> - Add breadcrumb navigation to provider dashboard
+
+<!-- 2026-06-01 --> - Improve error messages for invalid appointment slots

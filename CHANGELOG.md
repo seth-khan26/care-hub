@@ -38,3 +38,5 @@
 <!-- 2026-05-31 --> - Improve RLS policy coverage for staff role
 
 <!-- 2026-06-01 --> - Fix race condition in concurrent session refresh
+
+<!-- 2026-06-01 --> - Add breadcrumb navigation to provider dashboard

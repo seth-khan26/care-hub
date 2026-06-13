@@ -42,3 +42,5 @@
 <!-- 2026-06-01 --> - Add breadcrumb navigation to provider dashboard
 
 <!-- 2026-06-01 --> - Improve error messages for invalid appointment slots
+
+<!-- 2026-06-13 --> - Add input sanitization to patient intake form

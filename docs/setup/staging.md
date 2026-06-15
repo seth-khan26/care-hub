@@ -5,3 +5,7 @@ Mirrors production config with anonymized data.
 ## Migrations
 
 Run `npm run migrate:staging` before each staging deployment.
+
+## Health Checks
+
+`/api/health` and `/api/ready` for load balancer probes.

@@ -48,3 +48,5 @@
 <!-- 2026-06-16 --> - Refactor billing module to use shared service layer
 
 <!-- 2026-06-29 --> - Cache organization lookup to reduce DB round-trips
+
+<!-- 2026-07-02 --> - Improve loading states in scheduling calendar view

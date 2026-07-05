@@ -210,3 +210,7 @@ Components use `usePermission()` to conditionally render UI elements.
 ## Scheduling Dashboard
 
 Calendar shows availability, bookings, and waitlist entries.
+
+## Patient Portal
+
+Patients view appointments, recent notes, and account info.

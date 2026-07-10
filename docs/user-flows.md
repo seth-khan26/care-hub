@@ -214,3 +214,7 @@ Calendar shows availability, bookings, and waitlist entries.
 ## Patient Portal
 
 Patients view appointments, recent notes, and account info.
+
+## Patient Booking
+
+Patients select provider, date, and reason from available slots.

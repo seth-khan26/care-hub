@@ -54,3 +54,5 @@
 <!-- 2026-07-04 --> - Refactor tenant context resolver for clarity
 
 <!-- 2026-07-12 --> - Improve API response time for provider dashboard
+
+<!-- 2026-07-12 --> - Refactor patient profile form for better UX

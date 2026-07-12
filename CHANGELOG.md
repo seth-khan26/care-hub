@@ -52,3 +52,5 @@
 <!-- 2026-07-02 --> - Improve loading states in scheduling calendar view
 
 <!-- 2026-07-04 --> - Refactor tenant context resolver for clarity
+
+<!-- 2026-07-12 --> - Improve API response time for provider dashboard

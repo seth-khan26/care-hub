@@ -56,3 +56,5 @@
 <!-- 2026-07-12 --> - Improve API response time for provider dashboard
 
 <!-- 2026-07-12 --> - Refactor patient profile form for better UX
+
+<!-- 2026-07-13 --> - Improve patient search performance with composite index

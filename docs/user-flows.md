@@ -218,3 +218,7 @@ Patients view appointments, recent notes, and account info.
 ## Patient Booking
 
 Patients select provider, date, and reason from available slots.
+
+## Medical History
+
+Read-only view of past clinical notes and visit summaries.

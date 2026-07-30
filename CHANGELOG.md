@@ -58,3 +58,5 @@
 <!-- 2026-07-12 --> - Refactor patient profile form for better UX
 
 <!-- 2026-07-13 --> - Improve patient search performance with composite index
+
+<!-- 2026-07-30 --> - Add unit tests for RBAC permission matrix edge cases

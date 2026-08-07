@@ -175,3 +175,7 @@ Providers configure weekly templates with blocked slots and overrides.
 ## Status States
 
 SCHEDULED→CONFIRMED→IN_PROGRESS→COMPLETED | CANCELLED | NO_SHOW
+
+## Bug Report
+
+Concurrent bookings created duplicate appointments under load.

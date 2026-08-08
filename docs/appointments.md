@@ -179,3 +179,7 @@ SCHEDULED→CONFIRMED→IN_PROGRESS→COMPLETED | CANCELLED | NO_SHOW
 ## Bug Report
 
 Concurrent bookings created duplicate appointments under load.
+
+## Fix Applied
+
+Switched from optimistic to pessimistic locking for slot reservation.

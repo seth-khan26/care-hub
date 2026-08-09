@@ -183,3 +183,7 @@ Concurrent bookings created duplicate appointments under load.
 ## Fix Applied
 
 Switched from optimistic to pessimistic locking for slot reservation.
+
+## Locking
+
+`SELECT FOR UPDATE` on slot row prevents concurrent double-booking.

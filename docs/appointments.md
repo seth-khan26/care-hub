@@ -187,3 +187,7 @@ Switched from optimistic to pessimistic locking for slot reservation.
 ## Locking
 
 `SELECT FOR UPDATE` on slot row prevents concurrent double-booking.
+
+## Regression Tests
+
+50-concurrent-request test confirms zero duplicates under load.

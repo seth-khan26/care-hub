@@ -202,3 +202,7 @@ The practice is ready to use immediately. The owner is the sole user and can inv
    - Records `user.logout` in audit log
 3. Redirected to `/login`
 4. The old session token is now invalid — a replay attack with the old cookie returns `401`
+
+## Role Guards
+
+Components use `usePermission()` to conditionally render UI elements.

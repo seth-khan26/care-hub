@@ -121,3 +121,15 @@ const canFinalize = hasPermission(tenant.role, "clinical_notes.finalize");
 ```
 
 This is the only acceptable place to check roles in the UI. Do not inline role comparisons (`role === "ADMIN"`) in component code.
+
+## Roles
+
+OWNER, ADMIN, PROVIDER, STAFF, PATIENT — each with distinct permissions.
+
+## Authorization
+
+`authorize(ctx, permission)` is the single gate for all access decisions.
+
+## Permissions
+
+Covers: patients, notes, appointments, users, billing, and reports.

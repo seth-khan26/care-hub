@@ -159,3 +159,19 @@ The conflict query runs efficiently due to the composite index:
 ```
 
 This index allows PostgreSQL to quickly narrow the conflict scan to a single provider's upcoming appointments.
+
+## Appointment Model
+
+Fields: provider, patient, slot, type, duration, status.
+
+## Conflict Prevention
+
+SERIALIZABLE isolation prevents race-condition double-booking.
+
+## Availability
+
+Providers configure weekly templates with blocked slots and overrides.
+
+## Status States
+
+SCHEDULED→CONFIRMED→IN_PROGRESS→COMPLETED | CANCELLED | NO_SHOW

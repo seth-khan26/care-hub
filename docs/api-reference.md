@@ -361,3 +361,7 @@ All routes return structured `{ code, message }` errors.
 ## Error Handling
 
 All routes return structured `{ code, message }` errors.
+
+## Notes API
+
+`GET /api/notes?search=&status=&from=&to=` — paginated results.

@@ -141,3 +141,7 @@ The following require additional work before claiming full HIPAA compliance:
 - **Client-side inactivity timeout:** A JavaScript idle timer to complement the server-side session expiry.
 - **MFA:** Multi-factor authentication is not implemented. For a production healthcare system, MFA is strongly recommended and may be required by cyber insurance providers.
 - **Penetration testing:** Independent security assessment of the running application.
+
+## Row-Level Security
+
+PostgreSQL RLS added as secondary isolation layer behind app-layer.

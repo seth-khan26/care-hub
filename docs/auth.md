@@ -168,3 +168,19 @@ Logout invalidates session server-side. Idle timeout 30 min.
 ## Authentication
 
 NextAuth.js credentials provider, bcrypt hashing, JWT sessions.
+
+### JWT Sessions
+
+Tokens rotate on every request. Refresh tokens stored httpOnly.
+
+### Password Hashing
+
+bcrypt cost 12. Plaintext passwords never stored.
+
+### Session Management
+
+Logout invalidates session server-side. Idle timeout 30 min.
+
+### Protected Routes
+
+`requireAuth()` guards all patient and provider endpoints.
